@@ -1,8 +1,8 @@
-import { Directive, ElementRef, Input, Renderer2 } from "@angular/core";
-import { Content } from "ionic-angular";
+import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import { Content } from 'ionic-angular';
 
 @Directive({
-  selector: "[elasticHeader]"
+  selector: '[elasticHeader]'
 })
 export class ElasticHeaderDirective {
   header: HTMLElement;
@@ -10,7 +10,7 @@ export class ElasticHeaderDirective {
   lastScrollTop: number = 0;
   translateAmt: number = 0;
 
-  @Input("elasticHeader") content: Content;
+  @Input('elasticHeader') content: Content;
 
   constructor(public element: ElementRef, public renderer: Renderer2) {}
 
@@ -32,15 +32,15 @@ export class ElasticHeaderDirective {
 
     if (this.lastScrollTop < 0) this.translateAmt = 0;
     else {
-      this.translateAmt += (this.lastScrollTop - scrollTop) / 4;
+      this.translateAmt += (this.lastScrollTop - scrollTop) / 0.5;
       if (this.translateAmt > 0) this.translateAmt = 0;
-      if (this.translateAmt < -this.headerHeight - 12)
-        this.translateAmt = -this.headerHeight - 12;
+      if (this.translateAmt < -this.headerHeight - 1.5)
+        this.translateAmt = -this.headerHeight - 1.5;
     }
     this.renderer.setStyle(
       this.header,
-      "transform",
-      "translate(0," + this.translateAmt + "px)"
+      'transform',
+      'translate(0,' + this.translateAmt + 'px)'
     );
     this.lastScrollTop = scrollTop;
   }
